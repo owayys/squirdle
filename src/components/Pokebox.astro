@@ -1,0 +1,84 @@
+---
+interface Props {
+    id: number;
+    gen: string;
+    species: string;
+    height: string;
+    weight: string;
+}
+
+const { id, gen, species, height, weight } = Astro.props;
+const url =
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
+    id +
+    ".png";
+---
+
+<div class="pokebox">
+    <img class="pokeimg" src={url} />
+    <table class="pokeinfo">
+        <tr>
+            <td class="property">GEN</td>
+            <td class="property-value">IV</td>
+        </tr>
+        <tr>
+            <td class="property">SPECIES</td>
+            <td class="property-value">Thunderclap</td>
+        </tr>
+        <tr>
+            <td class="property">HEIGHT</td>
+            <td class="property-value">1.5 m</td>
+        </tr>
+        <tr>
+            <td class="property">WEIGHT</td>
+            <td class="property-value">44.5 kg</td>
+        </tr>
+    </table>
+</div>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    .pokebox {
+        /* background-color: var(--secondary); */
+        border: 0.1rem solid var(--secondary);
+        margin: 1rem;
+        border-radius: 0.3rem;
+        display: flex;
+        flex-direction: row;
+    }
+    .pokeimg {
+        height: auto;
+        width: 50%;
+        padding: 1rem;
+        -webkit-filter: contrast(0) sepia(100%) hue-rotate(190deg)
+            saturate(2000%) brightness(100%);
+        filter: contrast(0) sepia(90%) hue-rotate(19deg) saturate(2000%)
+            brightness(100%);
+        opacity: 1;
+    }
+    .pokeinfo {
+        border-spacing: 0.5rem;
+        border-collapse: collapse;
+        width: 50%;
+    }
+    .pokeinfo tr {
+        border-bottom: 0.1rem solid var(--secondary);
+    }
+    .pokeinfo tr:last-child {
+        border: none;
+    }
+    .property {
+        color: var(--secondary_light);
+        font-size: 3vw;
+        font-weight: 700;
+        border-left: 0.1rem solid var(--secondary);
+        padding-left: 0.7rem;
+        padding-right: 0.3rem;
+        vertical-align: middle;
+    }
+    .property-value {
+        font-size: 4vw;
+        vertical-align: middle;
+    }
+</style>

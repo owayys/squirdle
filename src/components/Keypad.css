@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+#keyboard-cont {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#keyboard-cont div {
+    display: flex;
+}
+
+.keyboard-row {
+    margin: 0.2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyboard-button {
+    font-size: 4.6vw;
+    font-weight: 700;
+    padding: 2.2vh 2.7vw;
+    margin: 0.15rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: var(--secondary_light);
+    color: var(--text);
+    border: none;
+    border-radius: 0.3rem;
+}

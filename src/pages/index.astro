@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Pokebox from "../components/Pokebox.astro";
 import Gameboard from "../components/Gameboard.jsx";
 
 const text = "#FFFFFF";
@@ -14,29 +15,14 @@ const accent = "#AA572A";
 <Layout title="weedle">
     <main>
         <header>weedle</header>
-        <div class="pokebox">
-            <img class="pokeimg" src="807.png" />
-            <table class="pokeinfo">
-                <tr>
-                    <td class="property">GEN</td>
-                    <td class="property-value">IV</td>
-                </tr>
-                <tr>
-                    <td class="property">SPECIES</td>
-                    <td class="property-value">Thunderclap</td>
-                </tr>
-                <tr>
-                    <td class="property">HEIGHT</td>
-                    <td class="property-value">1.5 m</td>
-                </tr>
-                <tr>
-                    <td class="property">WEIGHT</td>
-                    <td class="property-value">44.5 kg</td>
-                </tr>
-            </table>
-        </div>
+        <Pokebox
+            id={807}
+            gen="IV"
+            species="Thunderclap"
+            height="1.5 m"
+            weight="44.5 kg"
+        />
         <Gameboard client:only="react" />
-        <!-- <Keyboard /> -->
     </main>
 </Layout>
 
@@ -56,8 +42,7 @@ const accent = "#AA572A";
         box-sizing: border-box;
     }
     header {
-        /* padding: 1.2rem; */
-        padding: 1.5vh;
+        padding: 1.2vh;
         font-size: 2rem;
         font-weight: 500;
         font-family: "Feather Bold";
@@ -75,44 +60,8 @@ const accent = "#AA572A";
     main {
         margin: 0;
         padding: 0;
-        max-width: 60ch;
+        max-width: 100vw;
         background-color: var(--background);
         color: var(--text);
-    }
-    .generation {
-        text-align: center;
-        font-size: x-large;
-        padding: 0.5rem;
-    }
-    .pokebox {
-        /* background-color: var(--secondary); */
-        border: 0.1rem solid var(--secondary);
-        margin: 1rem;
-        border-radius: 0.3rem;
-        display: flex;
-        flex-direction: row;
-    }
-    .pokeimg {
-        height: auto;
-        width: 50%;
-        padding: 1rem;
-    }
-    .pokeinfo {
-        border-spacing: 0.5rem;
-        border-collapse: collapse;
-        width: 50%;
-    }
-    .pokeinfo tr {
-        border-bottom: 0.1rem solid var(--secondary);
-    }
-    .pokeinfo tr:last-child {
-        border: none;
-    }
-    .property {
-        color: var(--secondary_light);
-        font-size: smaller;
-        border-left: 0.1rem solid var(--secondary);
-        padding-left: 0.5rem;
-        padding-right: 0.3rem;
     }
 </style>

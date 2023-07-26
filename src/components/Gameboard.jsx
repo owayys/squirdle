@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import Keypad from './Keypad';
 import './Gameboard.css'
 
 const Gameboard = () => {
@@ -6,8 +7,12 @@ const Gameboard = () => {
     let guessesRemaining = NUMBER_OF_GUESSES;
     let currentGuess = [];
     let nextLetter = 0;
-    let rightGuessString = "zeraora";
+    let rightGuessString = "zeraoraora";
     let currLetters = rightGuessString.length;
+
+    const handleClick = (e) => {
+        handleKey(e.id)
+    }
 
     const insertLetter = (pressedKey) => {
         if (nextLetter === currLetters) {
@@ -42,7 +47,7 @@ const Gameboard = () => {
         }
 
         if (guessString.length != currLetters) {
-            alert("Not enough letters!")
+            // alert("Not enough letters!")
             return
         }
 
@@ -72,7 +77,7 @@ const Gameboard = () => {
         }
 
         if (guessString === rightGuessString) {
-            alert("You guessed right! Game over!")
+            // alert("You guessed right! Game over!")
             guessesRemaining = 0
             return
         } else {
@@ -81,20 +86,17 @@ const Gameboard = () => {
             nextLetter = 0;
 
             if (guessesRemaining === 0) {
-                alert("You've run out of guesses! Game over!")
-                alert(`The right word was: "${rightGuessString}"`)
+                // alert("You've run out of guesses! Game over!")
+                // alert(`The right word was: "${rightGuessString}"`)
             }
         }
     }
 
-    document.addEventListener("keyup", (e) => {
-        console.log(e)
-
+    const handleKey = (pressedKey) => {
         if (guessesRemaining === 0) {
             return
         }
 
-        let pressedKey = String(e.key)
         if (pressedKey === "Backspace" && nextLetter !== 0) {
             deleteLetter()
             return
@@ -111,6 +113,10 @@ const Gameboard = () => {
         } else {
             insertLetter(pressedKey)
         }
+    }
+
+    document.addEventListener("keyup", (e) => {
+        handleKey(e.key)
     })
 
     return (
@@ -124,7 +130,7 @@ const Gameboard = () => {
                     </div>
                 )}
             </div>
-            {/* <input></input> */}
+            <Keypad handleClick={handleClick} />
         </>
     )
 }
