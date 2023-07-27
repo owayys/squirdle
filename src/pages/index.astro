@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Pokebox from "../components/Pokebox.astro";
 import Gameboard from "../components/Gameboard.jsx";
+import poke_data from "../data/poke_data.json";
+import romanize from "../util/romanize";
 
 const text = "#FFFFFF";
 const background = "#131F22";
@@ -9,20 +11,36 @@ const primary = "#FFC800";
 const secondary = "#202F36";
 const secondary_light = "#52656D";
 const accent = "#AA572A";
-// #37464F
+
+let origin_time = new Date("7/26/2023");
+
+let current_time = new Date();
+
+let day_idx =
+    Math.ceil(
+        (current_time.getTime() - origin_time.getTime()) / (1000 * 3600 * 24)
+    ) - 1;
+
+let curr_pokemon = poke_data[day_idx];
+let pokemon_list = poke_data.map((pokemon, idx) => pokemon.name);
 ---
 
 <Layout title="weedle">
     <main>
         <header>weedle</header>
         <Pokebox
-            id={807}
-            gen="IV"
-            species="Thunderclap"
-            height="1.5 m"
-            weight="44.5 kg"
+            id={curr_pokemon.id}
+            gen={romanize(curr_pokemon.gen)}
+            species={curr_pokemon.species}
+            height={curr_pokemon.height}
+            weight={curr_pokemon.weight}
+            types={curr_pokemon.types}
         />
-        <Gameboard client:only="react" />
+        <Gameboard
+            currPokemon={curr_pokemon.name}
+            pokeList={pokemon_list}
+            client:only="react"
+        />
     </main>
 </Layout>
 

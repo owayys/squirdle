@@ -1,13 +1,14 @@
 ---
 interface Props {
     id: number;
-    gen: string;
+    gen: number | string;
     species: string;
-    height: string;
-    weight: string;
+    height: number;
+    weight: number;
+    types: string[];
 }
 
-const { id, gen, species, height, weight } = Astro.props;
+const { id, gen, species, height, weight, types } = Astro.props;
 const url =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
     id +
@@ -19,66 +20,151 @@ const url =
     <table class="pokeinfo">
         <tr>
             <td class="property">GEN</td>
-            <td class="property-value">IV</td>
+            <td class="property-value">{gen}</td>
         </tr>
         <tr>
             <td class="property">SPECIES</td>
-            <td class="property-value">Thunderclap</td>
+            <td class="property-value">{species}</td>
         </tr>
         <tr>
-            <td class="property">HEIGHT</td>
-            <td class="property-value">1.5 m</td>
+            <td class="property">HT., WT.</td>
+            <td class="property-value">{height / 10} m, {weight / 10} kg</td>
         </tr>
         <tr>
-            <td class="property">WEIGHT</td>
-            <td class="property-value">44.5 kg</td>
+            <td class="property">TYPE</td>
+            <td class="property-value"
+                >{
+                    types.map((type, i) => (
+                        <span class={`poke-type type-${type}`}>
+                            {type.length <= 5
+                                ? type.slice(0, 5).toUpperCase()
+                                : type.slice(0, 4).toUpperCase()}
+                        </span>
+                    ))
+                }</td
+            >
         </tr>
     </table>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .pokebox {
+            border: 0.1rem solid var(--secondary);
+            margin: 1rem;
+            border-radius: 0.3rem;
+            display: flex;
+            flex-direction: row;
+        }
+        .pokeimg {
+            height: auto;
+            width: 50%;
+            padding: 1rem;
+            -webkit-filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
+            filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
+        }
+        .pokeinfo {
+            border-spacing: 0.5rem;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        .pokeinfo tr {
+            border-bottom: 0.1rem solid var(--secondary);
+        }
+        .pokeinfo tr:last-child {
+            border: none;
+        }
+        .property {
+            color: var(--secondary_light);
+            font-size: 3vw;
+            font-weight: 700;
+            border-left: 0.1rem solid var(--secondary);
+            padding-left: 0.7rem;
+            padding-right: 0.3rem;
+            vertical-align: middle;
+        }
+        .property-value {
+            font-size: 4vw;
+            vertical-align: middle;
+        }
+
+        .poke-type {
+            padding: 0.2rem 0.4rem;
+            font-size: 0.7rem;
+            margin: 1vw;
+            border-radius: 0.1rem;
+        }
+
+        .type-normal {
+            background-color: #aa9;
+        }
+
+        .type-fire {
+            background-color: #f42;
+        }
+
+        .type-water {
+            background-color: #39f;
+        }
+
+        .type-electric {
+            background-color: #fc3;
+        }
+
+        .type-grass {
+            background-color: #7c5;
+        }
+
+        .type-ice {
+            background-color: #6cf;
+        }
+
+        .type-fighting {
+            background-color: #b54;
+        }
+
+        .type-poison {
+            background-color: #a59;
+        }
+
+        .type-ground {
+            background-color: #db5;
+        }
+
+        .type-flying {
+            background-color: #89f;
+        }
+
+        .type-psychic {
+            background-color: #f59;
+        }
+
+        .type-bug {
+            background-color: #ab2;
+        }
+
+        .type-rock {
+            background-color: #ba6;
+        }
+
+        .type-ghost {
+            background-color: #66b;
+        }
+
+        .type-dragon {
+            background-color: #76e;
+        }
+
+        .type-dark {
+            background-color: #754;
+        }
+
+        .type-steel {
+            background-color: #aab;
+        }
+
+        .type-fairy {
+            background-color: #e9e;
+        }
+    </style>
 </div>
-<style>
-    * {
-        box-sizing: border-box;
-    }
-    .pokebox {
-        /* background-color: var(--secondary); */
-        border: 0.1rem solid var(--secondary);
-        margin: 1rem;
-        border-radius: 0.3rem;
-        display: flex;
-        flex-direction: row;
-    }
-    .pokeimg {
-        height: auto;
-        width: 50%;
-        padding: 1rem;
-        -webkit-filter: contrast(0) sepia(100%) hue-rotate(190deg)
-            saturate(2000%) brightness(100%);
-        filter: contrast(0) sepia(90%) hue-rotate(19deg) saturate(2000%)
-            brightness(100%);
-        opacity: 1;
-    }
-    .pokeinfo {
-        border-spacing: 0.5rem;
-        border-collapse: collapse;
-        width: 50%;
-    }
-    .pokeinfo tr {
-        border-bottom: 0.1rem solid var(--secondary);
-    }
-    .pokeinfo tr:last-child {
-        border: none;
-    }
-    .property {
-        color: var(--secondary_light);
-        font-size: 3vw;
-        font-weight: 700;
-        border-left: 0.1rem solid var(--secondary);
-        padding-left: 0.7rem;
-        padding-right: 0.3rem;
-        vertical-align: middle;
-    }
-    .property-value {
-        font-size: 4vw;
-        vertical-align: middle;
-    }
-</style>

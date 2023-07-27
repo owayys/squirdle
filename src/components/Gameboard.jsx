@@ -2,12 +2,12 @@
 import Keypad from './Keypad';
 import './Gameboard.css'
 
-const Gameboard = () => {
+const Gameboard = ({ currPokemon, pokeList }) => {
     const NUMBER_OF_GUESSES = 6;
     let guessesRemaining = NUMBER_OF_GUESSES;
     let currentGuess = [];
     let nextLetter = 0;
-    let rightGuessString = "zeraoraora";
+    let rightGuessString = currPokemon;
     let currLetters = rightGuessString.length;
 
     const handleClick = (e) => {
@@ -51,6 +51,11 @@ const Gameboard = () => {
             return
         }
 
+        if (!pokeList.includes(guessString)) {
+            alert("pokemon not in list!")
+            return
+        }
+
         for (let i = 0; i < currLetters; i++) {
             let letterColor = ''
             let box = row.children[i]
@@ -58,12 +63,12 @@ const Gameboard = () => {
 
             let letterPosition = rightGuess.indexOf(currentGuess[i])
             if (letterPosition === -1) {
-                letterColor = 'grey'
+                letterColor = '#202f36'
             } else {
                 if (currentGuess[i] === rightGuess[i]) {
                     letterColor = 'green'
                 } else {
-                    letterColor = 'yellow'
+                    letterColor = '#FFC800'
                 }
 
                 rightGuess[letterPosition] = "#"
