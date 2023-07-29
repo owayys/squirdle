@@ -15,7 +15,7 @@ const url =
     ".png";
 ---
 
-<div class="pokebox">
+<div id="pokebox">
     <img class="pokeimg" src={url} />
     <table class="pokeinfo">
         <tr>
@@ -36,9 +36,7 @@ const url =
                 >{
                     types.map((type, i) => (
                         <span class={`poke-type type-${type}`}>
-                            {type.length <= 5
-                                ? type.slice(0, 5).toUpperCase()
-                                : type.slice(0, 4).toUpperCase()}
+                            {type.toUpperCase()}
                         </span>
                     ))
                 }</td
@@ -49,7 +47,7 @@ const url =
         * {
             box-sizing: border-box;
         }
-        .pokebox {
+        #pokebox {
             border: 0.1rem solid var(--secondary);
             margin: 1rem;
             border-radius: 0.3rem;
@@ -62,6 +60,11 @@ const url =
             padding: 1rem;
             -webkit-filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
             filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
         }
         .pokeinfo {
             border-spacing: 0.5rem;
@@ -89,10 +92,25 @@ const url =
         }
 
         .poke-type {
-            padding: 0.2rem 0.4rem;
+            padding: 0.1rem 0.2rem;
             font-size: 0.7rem;
-            margin: 1vw;
+            margin: 0.6vw;
             border-radius: 0.1rem;
+        }
+
+        @media screen and (min-width: 720px) {
+            #pokebox {
+                margin-bottom: 0;
+            }
+            .property {
+                font-size: 1vw;
+            }
+            .property-value {
+                font-size: 1vw;
+            }
+            .poke-type {
+                font-size: 0.6rem;
+            }
         }
 
         .type-normal {

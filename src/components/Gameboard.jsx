@@ -3,7 +3,7 @@ import Keypad from './Keypad';
 import './Gameboard.css'
 
 const Gameboard = ({ currPokemon, pokeList }) => {
-    const NUMBER_OF_GUESSES = 6;
+    const NUMBER_OF_GUESSES = 5;
     let guessesRemaining = NUMBER_OF_GUESSES;
     let currentGuess = [];
     let nextLetter = 0;
@@ -20,7 +20,7 @@ const Gameboard = ({ currPokemon, pokeList }) => {
         }
         pressedKey = pressedKey.toLowerCase()
 
-        let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
+        let row = document.getElementsByClassName("letter-row")[5 - guessesRemaining]
         let box = row.children[nextLetter]
         box.textContent = pressedKey
         box.classList.add("filled-box")
@@ -29,7 +29,7 @@ const Gameboard = ({ currPokemon, pokeList }) => {
     }
 
     const deleteLetter = () => {
-        let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
+        let row = document.getElementsByClassName("letter-row")[5 - guessesRemaining]
         let box = row.children[nextLetter - 1]
         box.textContent = ""
         box.classList.remove("filled-box")
@@ -38,7 +38,7 @@ const Gameboard = ({ currPokemon, pokeList }) => {
     }
 
     const checkGuess = () => {
-        let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
+        let row = document.getElementsByClassName("letter-row")[5 - guessesRemaining]
         let guessString = ''
         let rightGuess = Array.from(rightGuessString)
 
@@ -63,7 +63,7 @@ const Gameboard = ({ currPokemon, pokeList }) => {
 
             let letterPosition = rightGuess.indexOf(currentGuess[i])
             if (letterPosition === -1) {
-                letterColor = '#202f36'
+                letterColor = '#202f35'
             } else {
                 if (currentGuess[i] === rightGuess[i]) {
                     letterColor = 'green'

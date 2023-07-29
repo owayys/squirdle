@@ -23,7 +23,9 @@
 .keyboard-button {
     font-size: 4.6vw;
     font-weight: 700;
-    padding: 2.2vh 2.7vw;
+    /* padding: 2.2vh 2.7vw; */
+    width: 8vw;
+    height: 6vh;
     margin: 0.15rem;
     cursor: pointer;
     text-transform: uppercase;
@@ -31,4 +33,15 @@
     color: var(--text);
     border: none;
     border-radius: 0.3rem;
+}
+
+@media screen and (min-width: 720px) {
+    .keyboard-button {
+        font-size: 1.3vw;
+        font-weight: 600;
+        /* padding: 1.1vh 0.7vw; */
+        width: 2.5vw;
+        height: 7vh;
+        margin: 0.075rem;
+    }
 }

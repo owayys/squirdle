@@ -11,7 +11,6 @@
     margin: 2px;
     font-size: 1.2rem;
     font-weight: 700;
-    /* height: 1.82rem; */
     height: 8.2vw;
     width: auto;
     aspect-ratio: auto 1/1;
@@ -21,11 +20,16 @@
     text-transform: uppercase;
 }
 
-/* .filled-box {
-    border: 2px solid var(--secondary_light);
-} */
-
 .letter-row {
     display: flex;
     flex-direction: row;
+}
+
+@media screen and (min-width: 720px) {
+    #game-board {
+        margin: 0.4rem;
+    }
+    .letter-box {
+        height: 2.5vw;
+    }
 }
