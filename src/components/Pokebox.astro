@@ -16,173 +16,203 @@ const url =
 ---
 
 <div id="pokebox">
-    <img class="pokeimg" src={url} />
+    <img class="pokeimg img-hidden placeholder" src={url} loading="lazy" />
     <table class="pokeinfo">
         <tr>
             <td class="property">GEN</td>
-            <td class="property-value">{gen}</td>
-        </tr>
+            <td class="property-value">{gen}</td></tr
+        >
         <tr>
             <td class="property">SPECIES</td>
-            <td class="property-value">{species}</td>
+            <td class="property-value property-hidden r-1">{species}</td>
         </tr>
         <tr>
             <td class="property">HT., WT.</td>
-            <td class="property-value">{height / 10} m, {weight / 10} kg</td>
+            <td class="property-value property-hidden r-2"
+                >{height / 10} m, {weight / 10} kg</td
+            >
         </tr>
         <tr>
             <td class="property">TYPE</td>
-            <td class="property-value"
-                >{
+            <td class="property-value property-hidden r-3">
+                {
                     types.map((type, i) => (
                         <span class={`poke-type type-${type}`}>
                             {type.toUpperCase()}
                         </span>
                     ))
-                }</td
-            >
+                }
+            </td>
         </tr>
     </table>
-    <style>
-        * {
-            box-sizing: border-box;
+</div>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    #pokebox {
+        border: 0.1rem solid var(--secondary);
+        margin: 1rem;
+        border-radius: 0.3rem;
+        display: flex;
+        flex-direction: row;
+    }
+    .pokeimg {
+        height: auto;
+        width: 50%;
+        padding: 1rem;
+    }
+    .img-hidden {
+        -webkit-filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
+        filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+        pointer-events: none;
+    }
+    .pokeinfo {
+        border-spacing: 0.5rem;
+        border-collapse: collapse;
+        width: 50%;
+    }
+    .pokeinfo tr {
+        border-bottom: 0.1rem solid var(--secondary);
+    }
+    .pokeinfo tr:last-child {
+        border: none;
+    }
+    .property {
+        color: var(--secondary_light);
+        font-size: 3vw;
+        font-weight: 700;
+        border-left: 0.1rem solid var(--secondary);
+        padding-left: 0.7rem;
+        padding-right: 0.3rem;
+        vertical-align: middle;
+    }
+    .property-value {
+        font-size: 4vw;
+        vertical-align: middle;
+        user-select: none;
+        text-align: center;
+        transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+    .property-revealed {
+        animation: pop-in 300ms 1;
+    }
+    @keyframes pop-in {
+        0% {
+            transform: scale(0.1);
         }
+        75% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    .poke-type {
+        padding: 0.1rem 0.2rem;
+        font-size: 0.7rem;
+        margin: 0.6vw;
+        border-radius: 0.1rem;
+    }
+
+    @media screen and (min-width: 720px) {
         #pokebox {
-            border: 0.1rem solid var(--secondary);
-            margin: 1rem;
-            border-radius: 0.3rem;
-            display: flex;
-            flex-direction: row;
-        }
-        .pokeimg {
-            height: auto;
-            width: 50%;
-            padding: 1rem;
-            -webkit-filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
-            filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
-            -webkit-user-drag: none;
-            -khtml-user-drag: none;
-            -moz-user-drag: none;
-            -o-user-drag: none;
-            user-drag: none;
-        }
-        .pokeinfo {
-            border-spacing: 0.5rem;
-            border-collapse: collapse;
-            width: 50%;
-        }
-        .pokeinfo tr {
-            border-bottom: 0.1rem solid var(--secondary);
-        }
-        .pokeinfo tr:last-child {
-            border: none;
+            margin-bottom: 0;
         }
         .property {
-            color: var(--secondary_light);
-            font-size: 3vw;
-            font-weight: 700;
-            border-left: 0.1rem solid var(--secondary);
-            padding-left: 0.7rem;
-            padding-right: 0.3rem;
-            vertical-align: middle;
+            font-size: 1vw;
         }
         .property-value {
-            font-size: 4vw;
-            vertical-align: middle;
+            font-size: 1vw;
         }
-
         .poke-type {
-            padding: 0.1rem 0.2rem;
-            font-size: 0.7rem;
-            margin: 0.6vw;
-            border-radius: 0.1rem;
+            font-size: 0.6rem;
+            margin: 0.1vw;
         }
+    }
+    .property-hidden,
+    .property-hidden .poke-type {
+        background-color: var(--background) !important;
+        color: var(--background);
+    }
+    .placeholder {
+        content: url("hidden_poke.png");
+    }
+    .type-normal {
+        background-color: #aa9;
+    }
 
-        @media screen and (min-width: 720px) {
-            #pokebox {
-                margin-bottom: 0;
-            }
-            .property {
-                font-size: 1vw;
-            }
-            .property-value {
-                font-size: 1vw;
-            }
-            .poke-type {
-                font-size: 0.6rem;
-            }
-        }
+    .type-fire {
+        background-color: #f42;
+    }
 
-        .type-normal {
-            background-color: #aa9;
-        }
+    .type-water {
+        background-color: #39f;
+    }
 
-        .type-fire {
-            background-color: #f42;
-        }
+    .type-electric {
+        background-color: #fc3;
+    }
 
-        .type-water {
-            background-color: #39f;
-        }
+    .type-grass {
+        background-color: #7c5;
+    }
 
-        .type-electric {
-            background-color: #fc3;
-        }
+    .type-ice {
+        background-color: #6cf;
+    }
 
-        .type-grass {
-            background-color: #7c5;
-        }
+    .type-fighting {
+        background-color: #b54;
+    }
 
-        .type-ice {
-            background-color: #6cf;
-        }
+    .type-poison {
+        background-color: #a59;
+    }
 
-        .type-fighting {
-            background-color: #b54;
-        }
+    .type-ground {
+        background-color: #db5;
+    }
 
-        .type-poison {
-            background-color: #a59;
-        }
+    .type-flying {
+        background-color: #89f;
+    }
 
-        .type-ground {
-            background-color: #db5;
-        }
+    .type-psychic {
+        background-color: #f59;
+    }
 
-        .type-flying {
-            background-color: #89f;
-        }
+    .type-bug {
+        background-color: #ab2;
+    }
 
-        .type-psychic {
-            background-color: #f59;
-        }
+    .type-rock {
+        background-color: #ba6;
+    }
 
-        .type-bug {
-            background-color: #ab2;
-        }
+    .type-ghost {
+        background-color: #66b;
+    }
 
-        .type-rock {
-            background-color: #ba6;
-        }
+    .type-dragon {
+        background-color: #76e;
+    }
 
-        .type-ghost {
-            background-color: #66b;
-        }
+    .type-dark {
+        background-color: #754;
+    }
 
-        .type-dragon {
-            background-color: #76e;
-        }
+    .type-steel {
+        background-color: #aab;
+    }
 
-        .type-dark {
-            background-color: #754;
-        }
-
-        .type-steel {
-            background-color: #aab;
-        }
-
-        .type-fairy {
-            background-color: #e9e;
-        }
-    </style>
-</div>
+    .type-fairy {
+        background-color: #e9e;
+    }
+</style>

@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import Keypad from './Keypad';
 import './Gameboard.css'
 
@@ -37,6 +36,42 @@ const Gameboard = ({ currPokemon, pokeList }) => {
         nextLetter -= 1
     }
 
+    const shadeKeyBoard = (letter, color) => {
+        for (const elem of document.getElementsByClassName("keyboard-button")) {
+            if (elem.textContent.toLowerCase() === letter.toLowerCase()) {
+                let oldColor = elem.style.backgroundColor
+                if (oldColor === 'green') {
+                    return
+                }
+
+                if (oldColor === '#FFC800' && color !== 'green') {
+                    return
+                }
+
+                elem.style.backgroundColor = color
+                break
+            }
+        }
+    }
+
+    const revealAll = () => {
+        let pokeImg = document.getElementsByClassName('pokeimg')[0];
+        let r1 = document.getElementsByClassName('r-1')[0]
+        let r2 = document.getElementsByClassName('r-2')[0]
+        let r3 = document.getElementsByClassName('r-3')[0]
+
+        pokeImg.classList.remove('placeholder')
+        pokeImg.classList.remove('img-hidden')
+        pokeImg.classList.add('property-revealed')
+
+        r1.classList.remove('property-hidden')
+        r1.classList.add('property-revealed')
+        r2.classList.remove('property-hidden')
+        r2.classList.add('property-revealed')
+        r3.classList.remove('property-hidden')
+        r3.classList.add('property-revealed')
+    }
+
     const checkGuess = () => {
         let row = document.getElementsByClassName("letter-row")[5 - guessesRemaining]
         let guessString = ''
@@ -48,6 +83,12 @@ const Gameboard = ({ currPokemon, pokeList }) => {
 
         if (guessString.length != currLetters) {
             // alert("Not enough letters!")
+            row.classList.add('shake')
+
+            // Buttons stops to shake after 2 seconds
+            setTimeout(() => {
+                row.classList.remove('shake')
+            }, 300);
             return
         }
 
@@ -77,18 +118,31 @@ const Gameboard = ({ currPokemon, pokeList }) => {
             let delay = 250 * i
             setTimeout(() => {
                 box.style.backgroundColor = letterColor
+                box.style.borderColor = letterColor
+                box.classList.add('box-revealed')
                 shadeKeyBoard(letter, letterColor)
             }, delay)
         }
 
         if (guessString === rightGuessString) {
             // alert("You guessed right! Game over!")
+            revealAll()
             guessesRemaining = 0
             return
         } else {
             guessesRemaining -= 1;
             currentGuess = [];
             nextLetter = 0;
+
+            if (guessesRemaining > 1) {
+                let currReveal = document.getElementsByClassName(`r-${5 - guessesRemaining}`)[0]
+                currReveal.classList.remove('property-hidden')
+                currReveal.classList.add('property-revealed')
+            } else {
+                let pokeImg = document.getElementsByClassName('pokeimg')[0];
+                pokeImg.classList.remove('placeholder')
+                pokeImg.classList.add('property-revealed')
+            }
 
             if (guessesRemaining === 0) {
                 // alert("You've run out of guesses! Game over!")
