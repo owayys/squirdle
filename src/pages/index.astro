@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Pokebox from "../components/Pokebox.astro";
-import Gameboard from "../components/Gameboard.jsx";
+import Gameboard from "../components/Gameboard/Gameboard.jsx";
 import poke_data from "../data/poke_data.json";
 import romanize from "../util/romanize";
 
@@ -24,8 +24,8 @@ let curr_pokemon = poke_data[day_idx];
 let pokemon_list = poke_data.map((pokemon) => pokemon.name);
 ---
 
-<Layout title="weedle">
-    <header>weedle</header>
+<Layout title="squirdle">
+    <header>squirdle</header>
     <main>
         <Pokebox
             id={curr_pokemon.id}
@@ -68,6 +68,12 @@ let pokemon_list = poke_data.map((pokemon) => pokemon.name);
         text-align: center;
         background-color: var(--secondary);
         width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header-icon {
+        margin: 0.15rem;
     }
     hr {
         display: block;
@@ -92,6 +98,9 @@ let pokemon_list = poke_data.map((pokemon) => pokemon.name);
         main {
             max-width: 32vw;
             margin: auto;
+        }
+        .header-icon {
+            margin: 0.5rem;
         }
     }
 </style>
