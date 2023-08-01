@@ -181,8 +181,7 @@ const Gameboard = ({ dayOffset, currPokemon, pokeList }) => {
             }
 
             if (guessesRemaining === 0) {
-                // alert("You've run out of guesses! Game over!")
-                // alert(`The right word was: "${rightGuessString}"`)
+                revealHints(5)
             }
         }
 
