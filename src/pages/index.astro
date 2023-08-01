@@ -4,6 +4,8 @@ import Pokebox from "../components/Pokebox.astro";
 import Gameboard from "../components/Gameboard/Gameboard.jsx";
 import poke_data from "../data/poke_data.json";
 import romanize from "../util/romanize";
+import { FaRegQuestionCircle } from "react-icons/fa";
+import { MdLeaderboard } from "react-icons/md";
 
 const text = "#FFFFFF";
 const background = "#131F22";
@@ -25,7 +27,11 @@ let pokemon_list = poke_data.map((pokemon) => pokemon.name);
 ---
 
 <Layout title="squirdle">
-    <header><span></span>squirdle<span></span></header>
+    <header>
+        <MdLeaderboard className="header-icon" />squirdle<FaRegQuestionCircle
+            className="header-icon"
+        />
+    </header>
     <main>
         <Pokebox
             id={curr_pokemon.id}
