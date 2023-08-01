@@ -2897,7 +2897,7 @@
     },
     {
         "id": 866,
-        "name": "mr-rime",
+        "name": "mrrime",
         "gen": 8,
         "height": 15,
         "weight": 582,
@@ -3275,7 +3275,7 @@
     },
     {
         "id": 1002,
-        "name": "chien-pao",
+        "name": "chienpao",
         "gen": 9,
         "height": 19,
         "weight": 1522,
@@ -4008,7 +4008,7 @@
     },
     {
         "id": 992,
-        "name": "iron-hands",
+        "name": "ironhands",
         "gen": 9,
         "height": 18,
         "weight": 3807,
@@ -4173,7 +4173,7 @@
     },
     {
         "id": 788,
-        "name": "tapu-fini",
+        "name": "tapufini",
         "gen": 7,
         "height": 13,
         "weight": 212,
@@ -4264,7 +4264,7 @@
     },
     {
         "id": 13,
-        "name": "weedle",
+        "name": "squirdle",
         "gen": 1,
         "height": 3,
         "weight": 32,
@@ -4414,7 +4414,7 @@
     },
     {
         "id": 250,
-        "name": "ho-oh",
+        "name": "hooh",
         "gen": 2,
         "height": 38,
         "weight": 1990,
@@ -4989,7 +4989,7 @@
     },
     {
         "id": 474,
-        "name": "porygon-z",
+        "name": "porygonz",
         "gen": 4,
         "height": 9,
         "weight": 340,
@@ -5388,7 +5388,7 @@
     },
     {
         "id": 783,
-        "name": "hakamo-o",
+        "name": "hakamoo",
         "gen": 7,
         "height": 12,
         "weight": 470,
@@ -5446,7 +5446,7 @@
     },
     {
         "id": 984,
-        "name": "great-tusk",
+        "name": "greattusk",
         "gen": 9,
         "height": 22,
         "weight": 3200,
@@ -5620,7 +5620,7 @@
     },
     {
         "id": 994,
-        "name": "iron-moth",
+        "name": "ironmoth",
         "gen": 9,
         "height": 12,
         "weight": 360,
@@ -5668,7 +5668,7 @@
     },
     {
         "id": 1003,
-        "name": "ting-lu",
+        "name": "tinglu",
         "gen": 9,
         "height": 27,
         "weight": 6997,
@@ -5772,7 +5772,7 @@
     },
     {
         "id": 772,
-        "name": "type-null",
+        "name": "typenull",
         "gen": 7,
         "height": 19,
         "weight": 1205,
@@ -6633,7 +6633,7 @@
     },
     {
         "id": 787,
-        "name": "tapu-bulu",
+        "name": "tapubulu",
         "gen": 7,
         "height": 19,
         "weight": 455,
@@ -6691,7 +6691,7 @@
     },
     {
         "id": 785,
-        "name": "tapu-koko",
+        "name": "tapukoko",
         "gen": 7,
         "height": 18,
         "weight": 205,
@@ -7726,7 +7726,7 @@
     },
     {
         "id": 122,
-        "name": "mr-mime",
+        "name": "mrmime",
         "gen": 1,
         "height": 13,
         "weight": 545,
@@ -8285,7 +8285,7 @@
     },
     {
         "id": 784,
-        "name": "kommo-o",
+        "name": "kommoo",
         "gen": 7,
         "height": 16,
         "weight": 782,
@@ -9069,7 +9069,7 @@
     },
     {
         "id": 1004,
-        "name": "chi-yu",
+        "name": "chiyu",
         "gen": 9,
         "height": 4,
         "weight": 49,
@@ -9265,7 +9265,7 @@
     },
     {
         "id": 439,
-        "name": "mime-jr",
+        "name": "mimejr",
         "gen": 4,
         "height": 6,
         "weight": 130,
@@ -9288,7 +9288,7 @@
     },
     {
         "id": 1001,
-        "name": "wo-chien",
+        "name": "wochien",
         "gen": 9,
         "height": 15,
         "weight": 742,
@@ -9657,7 +9657,7 @@
     },
     {
         "id": 786,
-        "name": "tapu-lele",
+        "name": "tapulele",
         "gen": 7,
         "height": 12,
         "weight": 186,
@@ -10392,7 +10392,7 @@
     },
     {
         "id": 782,
-        "name": "jangmo-o",
+        "name": "jangmoo",
         "gen": 7,
         "height": 6,
         "weight": 297,
