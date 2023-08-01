@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import Keypad from './Keypad';
+import Keypad from '../Keypad/Keypad.jsx';
 import './Gameboard.css'
 
 const Gameboard = ({ dayOffset, currPokemon, pokeList }) => {
-    const [data, setData] = useState(JSON.parse(localStorage.getItem('weedle')))
+    const [data, setData] = useState(JSON.parse(localStorage.getItem('squirdle')))
 
     if (data === null || data.dayOffset !== dayOffset) {
         setData({ game: { boardState: ["", "", "", "", ""], currentRowIndex: 0, status: "ONGOING" }, dayOffset: dayOffset })
-        localStorage.setItem('weedle', JSON.stringify({ game: { boardState: ["", "", "", "", ""], currentRowIndex: 0, status: "ONGOING" }, dayOffset: dayOffset }))
+        localStorage.setItem('squirdle', JSON.stringify({ game: { boardState: ["", "", "", "", ""], currentRowIndex: 0, status: "ONGOING" }, dayOffset: dayOffset }))
     }
 
     const NUMBER_OF_GUESSES = 5;
@@ -133,7 +133,7 @@ const Gameboard = ({ dayOffset, currPokemon, pokeList }) => {
 
             let letterPosition = rightGuess.indexOf(currentGuess[i])
             if (letterPosition === -1) {
-                letterColor = '#202f35'
+                letterColor = '#202f36'
             } else {
                 if (currentGuess[i] === rightGuess[i]) {
                     letterColor = 'green'
@@ -162,7 +162,7 @@ const Gameboard = ({ dayOffset, currPokemon, pokeList }) => {
             data.game.currentRowIndex = NUMBER_OF_GUESSES - guessesRemaining
             setData(data)
 
-            localStorage.setItem('weedle', JSON.stringify(data))
+            localStorage.setItem('squirdle', JSON.stringify(data))
 
             return
         } else {
@@ -189,7 +189,7 @@ const Gameboard = ({ dayOffset, currPokemon, pokeList }) => {
         data.game.currentRowIndex = NUMBER_OF_GUESSES - guessesRemaining
         setData(data)
 
-        localStorage.setItem('weedle', JSON.stringify(data))
+        localStorage.setItem('squirdle', JSON.stringify(data))
     }
 
     const handleKey = (pressedKey) => {
