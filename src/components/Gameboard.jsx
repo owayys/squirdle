@@ -1,20 +1,34 @@
+import { useState, useEffect } from "react";
 import Keypad from './Keypad';
 import './Gameboard.css'
 
-const Gameboard = ({ currPokemon, pokeList }) => {
+const Gameboard = ({ dayOffset, currPokemon, pokeList }) => {
+    const [data, setData] = useState(JSON.parse(localStorage.getItem('weedle')))
+
+    if (data === null || data.dayOffset !== dayOffset) {
+        setData({ game: { boardState: ["", "", "", "", ""], currentRowIndex: 0, status: "ONGOING" }, dayOffset: dayOffset })
+        localStorage.setItem('weedle', JSON.stringify({ game: { boardState: ["", "", "", "", ""], currentRowIndex: 0, status: "ONGOING" }, dayOffset: dayOffset }))
+    }
+
     const NUMBER_OF_GUESSES = 5;
-    let guessesRemaining = NUMBER_OF_GUESSES;
+    let guessesRemaining = data ? NUMBER_OF_GUESSES - data.game.currentRowIndex : NUMBER_OF_GUESSES;
     let currentGuess = [];
     let nextLetter = 0;
     let rightGuessString = currPokemon;
-    let currLetters = rightGuessString.length;
+    let rightGuess = Array.from(rightGuessString)
+    let maxLetters = rightGuessString.length;
+
+    let currBoard = data.game.boardState.map((word) => word !== "" ? word.split('') : Array(maxLetters).join(".").split("."))
+
+    console.log(data.game.currentRowIndex)
+    revealHints(data.game.currentRowIndex)
 
     const handleClick = (e) => {
         handleKey(e.id)
     }
 
     const insertLetter = (pressedKey) => {
-        if (nextLetter === currLetters) {
+        if (nextLetter === maxLetters) {
             return
         }
         pressedKey = pressedKey.toLowerCase()
@@ -54,22 +68,32 @@ const Gameboard = ({ currPokemon, pokeList }) => {
         }
     }
 
-    const revealAll = () => {
-        let pokeImg = document.getElementsByClassName('pokeimg')[0];
+    function revealHints(n) {
         let r1 = document.getElementsByClassName('r-1')[0]
         let r2 = document.getElementsByClassName('r-2')[0]
         let r3 = document.getElementsByClassName('r-3')[0]
+        let pokeImg = document.getElementsByClassName('pokeimg')[0];
 
-        pokeImg.classList.remove('placeholder')
-        pokeImg.classList.remove('img-hidden')
-        pokeImg.classList.add('property-revealed')
-
-        r1.classList.remove('property-hidden')
-        r1.classList.add('property-revealed')
-        r2.classList.remove('property-hidden')
-        r2.classList.add('property-revealed')
-        r3.classList.remove('property-hidden')
-        r3.classList.add('property-revealed')
+        if (n >= 1) {
+            r1.classList.remove('property-hidden')
+            r1.classList.add('property-revealed')
+        }
+        if (n >= 2) {
+            r2.classList.remove('property-hidden')
+            r2.classList.add('property-revealed')
+        }
+        if (n >= 3) {
+            r3.classList.remove('property-hidden')
+            r3.classList.add('property-revealed')
+        }
+        if (n >= 4) {
+            pokeImg.classList.remove('placeholder')
+            pokeImg.classList.add('property-revealed')
+        }
+        if (n >= 5) {
+            pokeImg.classList.remove('img-hidden')
+            pokeImg.classList.add('property-revealed')
+        }
     }
 
     const checkGuess = () => {
@@ -81,7 +105,7 @@ const Gameboard = ({ currPokemon, pokeList }) => {
             guessString += val
         }
 
-        if (guessString.length != currLetters) {
+        if (guessString.length != maxLetters) {
             // alert("Not enough letters!")
             row.classList.add('shake')
 
@@ -93,11 +117,16 @@ const Gameboard = ({ currPokemon, pokeList }) => {
         }
 
         if (!pokeList.includes(guessString)) {
-            alert("pokemon not in list!")
+            row.classList.add('shake')
+
+            // Buttons stops to shake after 2 seconds
+            setTimeout(() => {
+                row.classList.remove('shake')
+            }, 300);
             return
         }
 
-        for (let i = 0; i < currLetters; i++) {
+        for (let i = 0; i < maxLetters; i++) {
             let letterColor = ''
             let box = row.children[i]
             let letter = currentGuess[i]
@@ -126,8 +155,15 @@ const Gameboard = ({ currPokemon, pokeList }) => {
 
         if (guessString === rightGuessString) {
             // alert("You guessed right! Game over!")
-            revealAll()
+            revealHints(5)
             guessesRemaining = 0
+            data.game.status = "WIN"
+            data.game.boardState[data.game.currentRowIndex] = guessString
+            data.game.currentRowIndex = NUMBER_OF_GUESSES - guessesRemaining
+            setData(data)
+
+            localStorage.setItem('weedle', JSON.stringify(data))
+
             return
         } else {
             guessesRemaining -= 1;
@@ -149,6 +185,12 @@ const Gameboard = ({ currPokemon, pokeList }) => {
                 // alert(`The right word was: "${rightGuessString}"`)
             }
         }
+
+        data.game.boardState[data.game.currentRowIndex] = guessString
+        data.game.currentRowIndex = NUMBER_OF_GUESSES - guessesRemaining
+        setData(data)
+
+        localStorage.setItem('weedle', JSON.stringify(data))
     }
 
     const handleKey = (pressedKey) => {
@@ -181,13 +223,19 @@ const Gameboard = ({ currPokemon, pokeList }) => {
     return (
         <>
             <div id="game-board">
-                {[...Array(NUMBER_OF_GUESSES)].map((x, i) =>
-                    <div key={i} className="letter-row">
-                        {[...Array(currLetters)].map((y, j) =>
-                            <div key={j} className="letter-box"></div>
-                        )}
-                    </div>
-                )}
+                {
+                    currBoard.map((x, i) =>
+                        <div key={i} className="letter-row">
+                            {
+                                x.map((y, j) => {
+                                    let letterColor = y !== "" ? (rightGuess.indexOf(y) !== -1 ? (rightGuess[j] === y ? 'green' : '#FFC800') : '#202f35') : ""
+                                    return (<div key={j} className={`letter-box box-revealed`} style={{ borderColor: letterColor, backgroundColor: letterColor }}>{y}</div>)
+                                }
+                                )
+                            }
+                        </div>
+                    )
+                }
             </div>
             <Keypad handleClick={handleClick} />
         </>

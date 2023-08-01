@@ -16,7 +16,7 @@ const url =
 ---
 
 <div id="pokebox">
-    <img class="pokeimg img-hidden placeholder" src={url} loading="lazy" />
+    <img class="pokeimg img-hidden placeholder" src={url} loading="eager" />
     <table class="pokeinfo">
         <tr>
             <td class="property">GEN</td>
@@ -115,13 +115,13 @@ const url =
         }
     }
     .poke-type {
-        padding: 0.1rem 0.2rem;
-        font-size: 0.7rem;
+        padding: 1vw 1.2vw;
+        font-size: 2.65vw;
         margin: 0.6vw;
-        border-radius: 0.1rem;
+        border-radius: 0.4vw;
     }
 
-    @media screen and (min-width: 720px) {
+    @media screen and (min-width: 1024px) {
         #pokebox {
             margin-bottom: 0;
         }
@@ -132,8 +132,10 @@ const url =
             font-size: 1vw;
         }
         .poke-type {
-            font-size: 0.6rem;
+            padding: 0.3vw 0.42vw;
+            font-size: 0.75vw;
             margin: 0.1vw;
+            border-radius: 0.16vw;
         }
     }
     .property-hidden,
