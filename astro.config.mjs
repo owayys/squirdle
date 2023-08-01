@@ -6,5 +6,5 @@ import react from "@astrojs/react";
 export default defineConfig({
     integrations: [react()],
     site: 'https://owayys.github.io',
-    base: '/weedle',
+    base: '/squirdle',
 });
