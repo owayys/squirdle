@@ -1,9 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
 import Pokebox from "../components/Pokebox.astro";
-import Gameboard from "../components/Gameboard/Gameboard.jsx";
+import Gameboard from "../components/Gameboard/Gameboard";
+import Info from "../components/Info/Info";
+import Stats from "../components/Stats/Stats";
+
 import poke_data from "../data/poke_data.json";
 import romanize from "../util/romanize";
+
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
 
@@ -11,7 +16,7 @@ const text = "#FFFFFF";
 const background = "#131F22";
 const primary = "#FFC800";
 const secondary = "#202F36";
-const secondary_light = "#52656D";
+const secondary_light = "#48565B";
 const accent = "#AA572A";
 
 let origin_time = new Date("8/1/2023");
@@ -24,13 +29,15 @@ let day_idx = Math.floor(
 
 let curr_pokemon = poke_data[day_idx];
 let pokemon_list = poke_data.map((pokemon) => pokemon.name);
+console.log("Day:", day_idx);
+console.log(origin_time.toLocaleString(), current_time.toLocaleString());
 ---
 
 <Layout title="squirdle">
     <header>
-        <MdLeaderboard className="header-icon" />squirdle<FaRegQuestionCircle
-            className="header-icon"
-        />
+        <MdLeaderboard id="stats-button" className="header-button" />
+        squirdle
+        <FaRegQuestionCircle id="info-button" className="header-button" />
     </header>
     <main>
         <Pokebox
@@ -47,6 +54,8 @@ let pokemon_list = poke_data.map((pokemon) => pokemon.name);
             pokeList={pokemon_list}
             client:only="react"
         />
+        <Info client:only="react" />
+        <Stats client:only="react" />
     </main>
 </Layout>
 
@@ -78,8 +87,10 @@ let pokemon_list = poke_data.map((pokemon) => pokemon.name);
         justify-content: space-between;
         align-items: center;
     }
-    .header-icon {
-        margin: 0.15rem;
+    .header-button {
+        margin-left: 0.15rem;
+        margin-right: 0.15rem;
+        cursor: pointer;
     }
     hr {
         display: block;
@@ -105,8 +116,9 @@ let pokemon_list = poke_data.map((pokemon) => pokemon.name);
             max-width: 32vw;
             margin: auto;
         }
-        .header-icon {
-            margin: 0.5rem;
+        .header-button {
+            margin-left: 15rem;
+            margin-right: 15rem;
         }
     }
 </style>

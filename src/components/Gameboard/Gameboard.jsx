@@ -133,7 +133,7 @@ const Gameboard = ({ dayOffset, currPokemon, pokeList }) => {
 
             let letterPosition = rightGuess.indexOf(currentGuess[i])
             if (letterPosition === -1) {
-                letterColor = '#202f36'
+                letterColor = '#303F47'
             } else {
                 if (currentGuess[i] === rightGuess[i]) {
                     letterColor = 'green'
@@ -227,8 +227,8 @@ const Gameboard = ({ dayOffset, currPokemon, pokeList }) => {
                         <div key={i} className="letter-row">
                             {
                                 x.map((y, j) => {
-                                    let letterColor = y !== "" ? (rightGuess.indexOf(y) !== -1 ? (rightGuess[j] === y ? 'green' : '#FFC800') : '#202f35') : ""
-                                    return (<div key={j} className={`letter-box box-revealed`} style={{ borderColor: letterColor, backgroundColor: letterColor }}>{y}</div>)
+                                    let letterColor = y !== "" ? (rightGuess.indexOf(y) !== -1 ? (rightGuess[j] === y ? 'green' : '#FFC800') : '#303F47') : ""
+                                    return (<div key={j} className={`letter-box ${y !== "" ? 'box-revealed' : ''}`} style={{ borderColor: letterColor, backgroundColor: letterColor }}>{y}</div>)
                                 }
                                 )
                             }
