@@ -15,8 +15,7 @@ permissions:
   id-token: write
 
 env:
-- name: NODE_TLS_REJECT_UNAUTHORIZED
-  value: "0"
+  NODE_TLS_REJECT_UNAUTHORIZED: 0
 
 jobs:
   build:
