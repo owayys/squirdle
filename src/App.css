@@ -1,9 +1,8 @@
-
 header {
     padding: 1.2vh;
     font-size: 2rem;
     font-weight: 500;
-    font-family: "Feather Bold";
+    font-family: 'Feather Bold';
     color: var(--primary);
     text-align: center;
     background-color: var(--secondary);
@@ -45,5 +44,32 @@ main {
     .header-button {
         margin-left: 15rem;
         margin-right: 15rem;
+    }
+}
+
+.letter-box {
+    border: 2px solid #303f47;
+    border-radius: 3px;
+    margin: 2px;
+    font-size: 5.5vw;
+    font-weight: 700;
+    height: 8.2vw;
+    width: auto;
+    aspect-ratio: auto 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.letter-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (min-width: 1024px) {
+    .letter-box {
+        height: 2.5vw;
+        font-size: 2.7vh;
     }
 }

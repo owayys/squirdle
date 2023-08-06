@@ -2,7 +2,7 @@
     max-width: none !important;
 }
 
-#info-modal {
+#stats-modal {
     background-color: var(--background);
     color: var(--text);
     outline: none;
@@ -12,21 +12,21 @@
     padding: 0;
 }
 
-#info-modal::backdrop {
+#stats-modal::backdrop {
     backdrop-filter: brightness(50%);
     animation: fadein 0.15s ease forwards;
 }
 
-#info-modal[open] {
+#stats-modal[open] {
     animation: show 0.15s ease forwards;
 }
 
-#info-modal.close::backdrop {
+#stats-modal.close::backdrop {
     backdrop-filter: brightness(50%);
     animation: fadeout 0.15s ease forwards;
 }
 
-#info-modal.close[open] {
+#stats-modal.close[open] {
     animation: hide 0.15s ease backwards;
 }
 
@@ -70,12 +70,12 @@
     }
 }
 
-#info-div {
+#stats-div {
     padding-left: 3.5vw;
     padding-right: 3.5vw;
 }
 
-.info-heading {
+.stats-heading {
     font-family: 'Feather Bold';
 }
 
@@ -89,12 +89,12 @@ h2 {
     font-weight: 300;
 }
 
-.info-row {
+.stats-row {
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
 }
 
-.info-text {
+.stats-text {
     margin-bottom: 1.3rem;
 }
 
@@ -111,10 +111,10 @@ hr {
 }
 
 @media screen and (min-width: 1024px) {
-    #info-modal {
+    #stats-modal {
         max-width: 32vw;
     }
-    #info-div {
+    #stats-div {
         padding: 1.2vw;
     }
 }

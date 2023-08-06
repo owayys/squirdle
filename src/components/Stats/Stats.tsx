@@ -1,52 +1,52 @@
 import { useRef, useEffect, forwardRef } from 'react';
-import './Info.css';
+import './Stats.css';
 
-const Info = forwardRef(function Info(props, ref) {
-    let infoButton: any = ref;
-    let infoModal: any = useRef();
+const Stats = forwardRef(function stats(props, ref) {
+    let statsButton: any = ref;
+    let statsModal: any = useRef();
 
     useEffect(() => {
-        if (infoButton.current) {
-            infoButton.current.addEventListener('click', () => {
-                if (!infoModal.current.open) {
-                    infoModal.current.showModal();
+        if (statsButton.current) {
+            statsButton.current.addEventListener('click', () => {
+                if (!statsModal.current.open) {
+                    statsModal.current.showModal();
                 }
             });
         }
     }, []);
 
     function closeModal() {
-        infoModal.current.close();
-        infoModal.current.classList.remove('close');
-        infoModal.current.removeEventListener('animationend', closeModal);
+        statsModal.current.close();
+        statsModal.current.classList.remove('close');
+        statsModal.current.removeEventListener('animationend', closeModal);
     }
 
     useEffect(() => {
-        if (infoModal && infoModal.current) {
-            infoModal.current.addEventListener('click', (e: MouseEvent) => {
+        if (statsModal && statsModal.current) {
+            statsModal.current.addEventListener('click', (e: MouseEvent) => {
                 const dialogDimensions =
-                    infoModal.current.getBoundingClientRect();
+                    statsModal.current.getBoundingClientRect();
                 if (
                     e.clientX < dialogDimensions.left ||
                     e.clientX > dialogDimensions.right ||
                     e.clientY < dialogDimensions.top ||
                     e.clientY > dialogDimensions.bottom
                 ) {
-                    infoModal.current.addEventListener(
+                    statsModal.current.addEventListener(
                         'animationend',
                         closeModal,
                     );
-                    infoModal.current.classList.add('close');
+                    statsModal.current.classList.add('close');
                 }
             });
         }
-    }, [infoModal]);
+    }, [statsModal]);
 
     return (
-        <dialog ref={infoModal} id="info-modal" open={false}>
-            <div id="info-div">
-                <h1 className="info-heading">How To Play</h1>
-                <h2 className="info-heading">Guess the Pokémon in 5 tries.</h2>
+        <dialog ref={statsModal} id="stats-modal" open={false}>
+            <div id="stats-div">
+                <h1 className="stats-heading">How To Stats</h1>
+                <h2 className="stats-heading">Guess the Pokémon in 5 tries.</h2>
                 <ul>
                     <li>Each guess must be a valid Pokémon.</li>
                     <li>
@@ -57,7 +57,7 @@ const Info = forwardRef(function Info(props, ref) {
                 <p>
                     <strong>Examples</strong>
                 </p>
-                <div className="letter-row info-row">
+                <div className="letter-row stats-row">
                     <div
                         className="letter-box box-revealed"
                         style={{
@@ -73,11 +73,11 @@ const Info = forwardRef(function Info(props, ref) {
                     <div className="letter-box">B</div>
                     <div className="letter-box">I</div>
                 </div>
-                <div className="info-text">
+                <div className="stats-text">
                     <strong>C</strong> is in the Pokémon and in the correct
                     spot.
                 </div>
-                <div className="letter-row info-row">
+                <div className="letter-row stats-row">
                     <div className="letter-box">P</div>
                     <div className="letter-box">I</div>
                     <div
@@ -94,10 +94,10 @@ const Info = forwardRef(function Info(props, ref) {
                     <div className="letter-box">H</div>
                     <div className="letter-box">U</div>
                 </div>
-                <div className="info-text">
+                <div className="stats-text">
                     <strong>K</strong> is in the Pokémon but in the wrong spot.
                 </div>
-                <div className="letter-row info-row">
+                <div className="letter-row stats-row">
                     <div className="letter-box">D</div>
                     <div className="letter-box">I</div>
                     <div className="letter-box">A</div>
@@ -113,7 +113,7 @@ const Info = forwardRef(function Info(props, ref) {
                     </div>
                     <div className="letter-box">A</div>
                 </div>
-                <div className="info-text">
+                <div className="stats-text">
                     <strong>G</strong> is not in the Pokémon in any spot.
                 </div>
                 {/* <hr color="#303F47"></hr> */}
@@ -122,4 +122,4 @@ const Info = forwardRef(function Info(props, ref) {
     );
 });
 
-export default Info;
+export default Stats;
