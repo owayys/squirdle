@@ -5,15 +5,30 @@ const Stats = forwardRef(function stats(_: unknown, ref: Ref<HTMLDivElement>) {
     let statsButton: any = ref;
     let statsModal: any = useRef();
 
-    let tempData = JSON.parse(localStorage.getItem('squirdle') || '{}');
+    let tempStorage = JSON.parse(localStorage.getItem('squirdle') || '{}');
 
-    const [stats, setStats] = useState(tempData.stats);
+    const [stats, setStats] = useState(
+        tempStorage.stats || {
+            currentStreak: 0,
+            gamesPlayed: 0,
+            gamesWon: 0,
+            guesses: {
+                1: 0,
+                2: 0,
+                3: 0,
+                4: 0,
+                5: 0,
+                fail: 0,
+            },
+            maxStreak: 0,
+        },
+    );
 
     window.addEventListener('storage', () => {
         console.log('Change to local storage!');
-        tempData = JSON.parse(localStorage.getItem('squirdle') || '{}');
+        tempStorage = JSON.parse(localStorage.getItem('squirdle') || '{}');
 
-        setStats(tempData.stats);
+        setStats(tempStorage.stats);
     });
 
     let maxGuesses = 0;
