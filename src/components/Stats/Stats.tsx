@@ -16,14 +16,17 @@ const Stats = forwardRef(function stats(_: unknown, ref: Ref<HTMLDivElement>) {
         setStats(tempData.stats);
     });
 
-    const maxGuesses = Math.max(
-        stats.guesses[1],
-        stats.guesses[2],
-        stats.guesses[3],
-        stats.guesses[4],
-        stats.guesses[5],
-    );
+    let maxGuesses = 0;
 
+    useEffect(() => {
+        maxGuesses = Math.max(
+            stats.guesses[1],
+            stats.guesses[2],
+            stats.guesses[3],
+            stats.guesses[4],
+            stats.guesses[5],
+        );
+    }, [stats]);
     useEffect(() => {
         if (statsButton.current) {
             statsButton.current.addEventListener('click', () => {
