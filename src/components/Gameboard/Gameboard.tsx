@@ -7,19 +7,20 @@ interface gameData {
         boardState: [string, string, string, string, string];
         currentRowIndex: number;
         status: string;
+        timestamps: {
+            lastCompleted: number;
+            lastPlayed: number;
+        };
     };
     dayOffset: number;
     stats: {
-        averageGuesses: number;
         currentStreak: number;
         gamesPlayed: number;
         gamesWon: number;
         guesses: {
             [key: string | number]: number;
         };
-        isOnStreak: boolean;
         maxStreak: number;
-        winPercentage: number;
     };
 }
 
@@ -41,10 +42,13 @@ const Gameboard = ({
             boardState: ['', '', '', '', ''],
             currentRowIndex: 0,
             status: 'ONGOING',
+            timestamps: {
+                lastCompleted: 0,
+                lastPlayed: 0,
+            },
         },
         dayOffset: dayOffset,
         stats: {
-            averageGuesses: 0,
             currentStreak: 0,
             gamesPlayed: 0,
             gamesWon: 0,
@@ -56,15 +60,29 @@ const Gameboard = ({
                 5: 0,
                 fail: 0,
             },
-            isOnStreak: false,
             maxStreak: 0,
-            winPercentage: 0,
         },
     };
 
-    if (Object.keys(data).length === 0 || data.dayOffset !== dayOffset) {
+    if (Object.keys(data).length === 0) {
         setData(tempData);
         localStorage.setItem('squirdle', JSON.stringify(tempData));
+        window.dispatchEvent(new Event('storage'));
+    } else if (data.dayOffset !== dayOffset) {
+        localStorage.setItem(
+            'squirdle',
+            JSON.stringify({
+                game: {
+                    boardState: ['', '', '', '', ''],
+                    currentRowIndex: 0,
+                    status: 'ONGOING',
+                    timestamps: data.game.timestamps,
+                },
+                dayOffset: dayOffset,
+                stats: data.stats,
+            }),
+        );
+        window.dispatchEvent(new Event('storage'));
     }
 
     const NUMBER_OF_GUESSES = 5;
@@ -239,15 +257,36 @@ const Gameboard = ({
         if (guessString === rightGuessString) {
             // alert("You guessed right! Game over!")
             revealHints(5);
+
             data.game.status = 'WIN';
             data.game.boardState[data.game.currentRowIndex] = guessString;
             data.game.currentRowIndex = NUMBER_OF_GUESSES - guessesRemaining;
-            data.stats.currentStreak += 1;
+
+            if (
+                (new Date().getTime() - data.game.timestamps.lastPlayed) /
+                    (1000 * 3600 * 24) <
+                    1 ||
+                data.game.timestamps.lastPlayed === 0
+            ) {
+                data.stats.currentStreak += 1;
+            } else {
+                data.stats.currentStreak = 0;
+            }
+
+            if (data.stats.currentStreak > data.stats.maxStreak) {
+                data.stats.maxStreak = data.stats.currentStreak;
+            }
+
             data.stats.gamesWon += 1;
+            data.stats.gamesPlayed += 1;
             data.stats.guesses[NUMBER_OF_GUESSES - guessesRemaining + 1] += 1;
+            data.game.timestamps.lastCompleted = new Date().getTime();
+            data.game.timestamps.lastPlayed = new Date().getTime();
+
             setData(data);
 
             localStorage.setItem('squirdle', JSON.stringify(data));
+            window.dispatchEvent(new Event('storage'));
             guessesRemaining = 0;
 
             return;
@@ -273,6 +312,8 @@ const Gameboard = ({
 
                 data.stats.currentStreak = 0;
                 data.stats.guesses['fail'] += 1;
+                data.stats.gamesPlayed += 1;
+                data.game.timestamps.lastPlayed = new Date().getTime();
             }
         }
 
@@ -280,11 +321,10 @@ const Gameboard = ({
         data.game.currentRowIndex = NUMBER_OF_GUESSES - guessesRemaining;
 
         localStorage.setItem('squirdle', JSON.stringify(data));
+        window.dispatchEvent(new Event('storage'));
     };
 
     function handleKey(pressedKey: string) {
-        console.log(pressedKey);
-
         if (guessesRemaining === 0) {
             return;
         }

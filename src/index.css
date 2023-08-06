@@ -1,17 +1,17 @@
-@import url("https://db.onlinewebfonts.com/c/14936bb7a4b6575fd2eee80a3ab52cc2?family=Feather+Bold");
-@import url("https://db.onlinewebfonts.com/c/ab596f21664c5582567537d241e2a53e?family=DIN+Next+Rounded+LT+W01+Regular");
+@import url('https://db.onlinewebfonts.com/c/14936bb7a4b6575fd2eee80a3ab52cc2?family=Feather+Bold');
+@import url('https://db.onlinewebfonts.com/c/ab596f21664c5582567537d241e2a53e?family=DIN+Next+Rounded+LT+W01+Regular');
 
 * {
-    --text: #FFFFFF;
-    --background: #131F22;
-    --primary: #FFC800;
-    --secondary: #202F36;
-    --secondary_light: #48565B;
-    --accent: #AA572A;
+    --text: #ffffff;
+    --background: #131f22;
+    --primary: #ffc800;
+    --secondary: #202f36;
+    --secondary_light: #48565b;
+    --accent: #aa572a;
 }
 
 html {
-    font-family: "DIN Next Rounded LT W01 Regular";
+    font-family: 'DIN Next Rounded LT W01 Regular';
     background-color: var(--background);
 }
 body {
@@ -23,8 +23,15 @@ body {
     flex-direction: column;
 }
 code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-        DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+    font-family:
+        Menlo,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace;
 }
 * {
     box-sizing: border-box;

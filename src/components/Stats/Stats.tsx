@@ -1,9 +1,28 @@
-import { useRef, useEffect, forwardRef } from 'react';
+import { useRef, useEffect, useState, forwardRef } from 'react';
 import './Stats.css';
 
 const Stats = forwardRef(function stats(props, ref) {
     let statsButton: any = ref;
     let statsModal: any = useRef();
+
+    let tempData = JSON.parse(localStorage.getItem('squirdle') || '{}');
+
+    const [stats, setStats] = useState(tempData.stats);
+
+    window.addEventListener('storage', () => {
+        console.log('Change to local storage!');
+        tempData = JSON.parse(localStorage.getItem('squirdle') || '{}');
+
+        setStats(tempData.stats);
+    });
+
+    const maxGuesses = Math.max(
+        stats.guesses[1],
+        stats.guesses[2],
+        stats.guesses[3],
+        stats.guesses[4],
+        stats.guesses[5],
+    );
 
     useEffect(() => {
         if (statsButton.current) {
@@ -45,78 +64,62 @@ const Stats = forwardRef(function stats(props, ref) {
     return (
         <dialog ref={statsModal} id="stats-modal" open={false}>
             <div id="stats-div">
-                <h1 className="stats-heading">How To Stats</h1>
-                <h2 className="stats-heading">Guess the Pokémon in 5 tries.</h2>
-                <ul>
-                    <li>Each guess must be a valid Pokémon.</li>
-                    <li>
-                        The color of the tiles will change to show how close
-                        your guess was to the Pokémon.
-                    </li>
-                </ul>
-                <p>
-                    <strong>Examples</strong>
-                </p>
-                <div className="letter-row stats-row">
-                    <div
-                        className="letter-box box-revealed"
-                        style={{
-                            borderColor: 'green',
-                            backgroundColor: 'green',
-                        }}
-                    >
-                        C
+                <h1 className="stats-heading">Statistics</h1>
+                <div className="stats-cont">
+                    <div className="stat-box">
+                        <div className="stat-value">{stats.gamesPlayed}</div>
+                        <div className="stat-name">PLAYED</div>
                     </div>
-                    <div className="letter-box">E</div>
-                    <div className="letter-box">L</div>
-                    <div className="letter-box">E</div>
-                    <div className="letter-box">B</div>
-                    <div className="letter-box">I</div>
-                </div>
-                <div className="stats-text">
-                    <strong>C</strong> is in the Pokémon and in the correct
-                    spot.
-                </div>
-                <div className="letter-row stats-row">
-                    <div className="letter-box">P</div>
-                    <div className="letter-box">I</div>
-                    <div
-                        className="letter-box box-revealed"
-                        style={{
-                            borderColor: '#FFC800',
-                            backgroundColor: '#FFC800',
-                        }}
-                    >
-                        K
+                    <div className="stat-box">
+                        <div className="stat-value">
+                            {stats.gamesPlayed > 0
+                                ? (stats.gamesWon / stats.gamesPlayed) * 100
+                                : 0}
+                        </div>
+                        <div className="stat-name">WIN %</div>
                     </div>
-                    <div className="letter-box">A</div>
-                    <div className="letter-box">C</div>
-                    <div className="letter-box">H</div>
-                    <div className="letter-box">U</div>
-                </div>
-                <div className="stats-text">
-                    <strong>K</strong> is in the Pokémon but in the wrong spot.
-                </div>
-                <div className="letter-row stats-row">
-                    <div className="letter-box">D</div>
-                    <div className="letter-box">I</div>
-                    <div className="letter-box">A</div>
-                    <div className="letter-box">L</div>
-                    <div
-                        className="letter-box box-revealed"
-                        style={{
-                            borderColor: '#303F47',
-                            backgroundColor: '#303F47',
-                        }}
-                    >
-                        G
+                    <div className="stat-box">
+                        <div className="stat-value">{stats.currentStreak}</div>
+                        <div className="stat-name">CURR STREAK</div>
                     </div>
-                    <div className="letter-box">A</div>
+                    <div className="stat-box">
+                        <div className="stat-value">{stats.maxStreak}</div>
+                        <div className="stat-name">MAX STREAK</div>
+                    </div>
                 </div>
-                <div className="stats-text">
-                    <strong>G</strong> is not in the Pokémon in any spot.
+                <div className="guess-cont">
+                    <p>
+                        <strong>Guess distribution</strong>
+                    </p>
+                    {Array.from({ length: 5 }, (v, k) => k + 1).map((n, i) => {
+                        return (
+                            <div key={i} className="guess-box">
+                                <div className="guess-value">{n}</div>
+                                <div className="guess-bar-outer">
+                                    <div
+                                        className={`guess-bar-inner ${
+                                            stats.guesses[n] === maxGuesses &&
+                                            maxGuesses > 0
+                                                ? 'max-guess'
+                                                : ''
+                                        }`}
+                                        style={{
+                                            width: `${
+                                                stats.guesses[n] > 0
+                                                    ? (stats.guesses[n] /
+                                                          maxGuesses) *
+                                                      100
+                                                    : 7
+                                            }%`,
+                                        }}
+                                    >
+                                        {stats.guesses[n]}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
-                {/* <hr color="#303F47"></hr> */}
             </div>
         </dialog>
     );

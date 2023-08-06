@@ -5,11 +5,11 @@ header {
     font-family: 'Feather Bold';
     color: var(--primary);
     text-align: center;
-    background-color: var(--secondary);
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 0.2rem solid var(--secondary);
 }
 .header-button {
     margin-left: 0.15rem;
