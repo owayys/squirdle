@@ -117,6 +117,7 @@ const Info = forwardRef(function Info(_: unknown, ref: Ref<HTMLDivElement>) {
                     <strong>G</strong> is not in the Pokémon in any spot.
                 </div>
                 {/* <hr color="#303F47"></hr> */}
+                {/* yo */}
             </div>
         </dialog>
     );
