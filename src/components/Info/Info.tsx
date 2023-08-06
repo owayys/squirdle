@@ -1,7 +1,7 @@
-import { useRef, useEffect, forwardRef } from 'react';
+import { useRef, useEffect, forwardRef, Ref } from 'react';
 import './Info.css';
 
-const Info = forwardRef(function Info(props, ref) {
+const Info = forwardRef(function Info(_: unknown, ref: Ref<HTMLDivElement>) {
     let infoButton: any = ref;
     let infoModal: any = useRef();
 

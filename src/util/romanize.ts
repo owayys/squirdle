@@ -35,7 +35,7 @@ function romanize(num: number) {
         ],
         roman = "",
         i = 3;
-    while (i--) roman = (key[+digits.pop() + i * 10] || "") + roman;
+    while (i--) roman = (key[+digits.pop()! + i * 10] || "") + roman;
     return Array(+digits.join("") + 1).join("M") + roman;
 }
 

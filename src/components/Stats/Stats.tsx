@@ -1,7 +1,7 @@
-import { useRef, useEffect, useState, forwardRef } from 'react';
+import { useRef, useEffect, useState, forwardRef, Ref } from 'react';
 import './Stats.css';
 
-const Stats = forwardRef(function stats(props, ref) {
+const Stats = forwardRef(function stats(_: unknown, ref: Ref<HTMLDivElement>) {
     let statsButton: any = ref;
     let statsModal: any = useRef();
 
@@ -91,7 +91,7 @@ const Stats = forwardRef(function stats(props, ref) {
                     <p>
                         <strong>Guess distribution</strong>
                     </p>
-                    {Array.from({ length: 5 }, (v, k) => k + 1).map((n, i) => {
+                    {Array.from({ length: 5 }, (_, k) => k + 1).map((n, i) => {
                         return (
                             <div key={i} className="guess-box">
                                 <div className="guess-value">{n}</div>
