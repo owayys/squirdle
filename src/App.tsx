@@ -19,8 +19,6 @@ function App() {
     );
     let curr_pokemon = poke_data[day_idx];
     let pokemon_list = poke_data.map((pokemon) => pokemon.name);
-    // console.log('Day:', day_idx);
-    // console.log(origin_time.toLocaleString(), current_time.toLocaleString());
 
     const pokeData = {
         dayOffset: day_idx,

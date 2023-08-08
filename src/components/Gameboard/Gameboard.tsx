@@ -83,6 +83,14 @@ const Gameboard = ({
             }),
         );
         window.dispatchEvent(new Event('storage'));
+        window.location.reload();
+    } else {
+        useEffect(() => {
+            if (data.game.status === 'WIN' && data.dayOffset === dayOffset) {
+                revealHints(5);
+            }
+            revealHints(data.game.currentRowIndex);
+        }, []);
     }
 
     const NUMBER_OF_GUESSES = 5;
@@ -102,11 +110,12 @@ const Gameboard = ({
     );
 
     useEffect(() => {
-        if (data.game.status === 'WIN') {
-            revealHints(5);
-        }
-        revealHints(data.game.currentRowIndex);
-    }, []);
+        currBoard = data.game.boardState.map((word) =>
+            word !== ''
+                ? word.split('')
+                : Array(maxLetters).join('.').split('.'),
+        );
+    }, [data]);
 
     const insertLetter = (pressedKey: string) => {
         if (nextLetter === maxLetters) {
@@ -310,6 +319,7 @@ const Gameboard = ({
             if (guessesRemaining === 0) {
                 revealHints(5);
 
+                data.game.status = 'LOSE';
                 data.stats.currentStreak = 0;
                 data.stats.guesses['fail'] += 1;
                 data.stats.gamesPlayed += 1;
