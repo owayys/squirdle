@@ -31,17 +31,20 @@ const Stats = forwardRef(function stats(_: unknown, ref: Ref<HTMLDivElement>) {
         setStats(tempStorage.stats);
     });
 
-    let maxGuesses = 0;
+    const [maxGuesses, setMaxGuesses] = useState(0);
 
     useEffect(() => {
-        maxGuesses = Math.max(
-            stats.guesses[1],
-            stats.guesses[2],
-            stats.guesses[3],
-            stats.guesses[4],
-            stats.guesses[5],
+        setMaxGuesses(
+            Math.max(
+                stats.guesses[1],
+                stats.guesses[2],
+                stats.guesses[3],
+                stats.guesses[4],
+                stats.guesses[5],
+            ),
         );
     }, [stats]);
+
     useEffect(() => {
         if (statsButton.current) {
             statsButton.current.addEventListener('click', () => {
@@ -131,7 +134,9 @@ const Stats = forwardRef(function stats(_: unknown, ref: Ref<HTMLDivElement>) {
                                             }%`,
                                         }}
                                     >
-                                        {stats.guesses[n]}
+                                        <div className="guess-count">
+                                            {stats.guesses[n]}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -154,12 +154,17 @@ hr {
 }
 
 .guess-bar-inner {
-    display: block;
+    display: flex;
     min-height: 100%;
     font-size: 3vw;
     font-weight: 700;
-    text-align: right;
     padding-right: 0.2rem;
+    justify-content: end;
+    align-items: center;
+}
+
+.guess-count {
+    text-align: center;
 }
 
 .guess-bar-inner:not(.max-guess) {
