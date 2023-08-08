@@ -358,6 +358,16 @@ const Gameboard = ({
     }
 
     document.addEventListener('keyup', (e) => {
+        if (
+            !(
+                e.key.match(/^[a-z]$/) ||
+                e.key === 'Enter' ||
+                e.key === 'Backspace'
+            )
+        ) {
+            return;
+        }
+
         handleKey(e.key);
     });
 
