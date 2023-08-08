@@ -36,14 +36,11 @@ main {
 @media screen and (min-width: 1024px) {
     header {
         font-size: 1.8rem;
+        justify-content: space-around;
     }
     main {
         max-width: 32vw;
         margin: auto;
-    }
-    .header-button {
-        margin-left: 15rem;
-        margin-right: 15rem;
     }
 }
 
