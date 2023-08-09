@@ -1,6 +1,26 @@
 import './Keypad.css';
 
-function Keypad({ handleKey }: any) {
+function Keypad({ handleKey, currBoard, rightGuessString }: any) {
+    console.log(currBoard, rightGuessString);
+
+    const rightGuess: string[] = Array.from(rightGuessString);
+
+    let keyColors: { [key: string]: string } = {};
+
+    for (let i = 0; i < currBoard.length; i++) {
+        for (let j = 0; j < rightGuess.length; j++) {
+            if (currBoard[i][j] === rightGuess[j]) {
+                keyColors[rightGuess[j]] = 'green';
+            } else if (rightGuessString.includes(currBoard[i][j])) {
+                if (keyColors[rightGuess[j]] !== 'green') {
+                    keyColors[rightGuess[j]] = '#FFC800';
+                }
+            } else {
+                keyColors[currBoard[i][j]] = '#303F47';
+            }
+        }
+    }
+
     const keys = [
         [
             { key: 'Q', id: 'Q' },
@@ -81,6 +101,15 @@ function Keypad({ handleKey }: any) {
                                     id={letter.id}
                                     key={letter_i}
                                     className="keyboard-button"
+                                    style={{
+                                        backgroundColor: `${
+                                            letter.id.toLowerCase() in keyColors
+                                                ? keyColors[
+                                                      letter.id.toLowerCase()
+                                                  ]
+                                                : ''
+                                        }`,
+                                    }}
                                     onClick={() => handleKey(letter.id)}
                                 >
                                     {letter.key}
