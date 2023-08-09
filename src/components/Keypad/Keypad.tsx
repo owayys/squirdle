@@ -14,7 +14,7 @@ function Keypad({ handleKey, currBoard, rightGuessString }: any) {
                 currBoard[i][j].length > 0
             ) {
                 if (keyColors[rightGuess[j]] !== 'green') {
-                    keyColors[rightGuess[j]] = '#FFC800';
+                    keyColors[currBoard[i][j]] = '#FFC800';
                 }
             } else {
                 keyColors[currBoard[i][j]] = '#303F47';
