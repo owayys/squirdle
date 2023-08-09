@@ -72,7 +72,7 @@
 
 @media screen and (min-width: 1024px) {
     #pokebox {
-        margin-bottom: 0;
+        margin-bottom: 0.5rem;
     }
     .property {
         font-size: 1vw;
@@ -87,13 +87,32 @@
         border-radius: 0.16vw;
     }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    #pokebox {
+        margin-bottom: 0.5rem;
+    }
+    .property {
+        font-size: 2vw;
+    }
+    .property-value {
+        font-size: 2.3vw;
+    }
+    .poke-type {
+        padding: 0.6vw 1.2vw;
+        font-size: 2vw;
+        margin: 0.1vw;
+        border-radius: 0.16vw;
+    }
+}
+
 .property-hidden,
 .property-hidden .poke-type {
     background-color: var(--background) !important;
     color: var(--background);
 }
 .placeholder {
-    content: url('/src/assets/hidden_poke.png');
+    content: url('/src/assets/hidden_poke.webp');
 }
 .type-normal {
     background-color: #aa9;

@@ -71,8 +71,7 @@
 }
 
 #info-div {
-    padding-left: 3.5vw;
-    padding-right: 3.5vw;
+    padding: 3.5vw;
     margin-top: 1rem;
 }
 
@@ -118,6 +117,12 @@ hr {
     }
     #info-div {
         padding: 1.2vw;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    #info-modal {
+        max-width: 64vw;
     }
 }
 

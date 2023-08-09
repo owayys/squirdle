@@ -35,11 +35,22 @@ main {
 }
 @media screen and (min-width: 1024px) {
     header {
-        font-size: 1.8rem;
+        font-size: 2rem;
         justify-content: space-around;
     }
     main {
         max-width: 32vw;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) and (max-width: 1024px) {
+    header {
+        font-size: 2rem;
+        justify-content: space-around;
+    }
+    main {
+        max-width: 65vw;
         margin: auto;
     }
 }
