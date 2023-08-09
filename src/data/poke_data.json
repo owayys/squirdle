@@ -1242,17 +1242,6 @@
         ]
     },
     {
-        "id": 233,
-        "name": "porygon2",
-        "gen": 2,
-        "height": 6,
-        "weight": 325,
-        "species": "Virtual",
-        "types": [
-            "normal"
-        ]
-    },
-    {
         "id": 214,
         "name": "heracross",
         "gen": 2,
@@ -3885,17 +3874,6 @@
         ]
     },
     {
-        "id": 151,
-        "name": "mew",
-        "gen": 1,
-        "height": 4,
-        "weight": 40,
-        "species": "New Species",
-        "types": [
-            "psychic"
-        ]
-    },
-    {
         "id": 261,
         "name": "poochyena",
         "gen": 3,
@@ -6033,17 +6011,6 @@
         "species": "Discharge",
         "types": [
             "electric"
-        ]
-    },
-    {
-        "id": 89,
-        "name": "muk",
-        "gen": 1,
-        "height": 12,
-        "weight": 300,
-        "species": "Sludge",
-        "types": [
-            "poison"
         ]
     },
     {
