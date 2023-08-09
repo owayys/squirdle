@@ -117,14 +117,30 @@ const Info = forwardRef(function Info(_: unknown, ref: Ref<HTMLDivElement>) {
                     <strong>G</strong> is not in the Pokémon in any spot.
                 </div>
                 <hr color="#303F47"></hr>
-                <p>
+                <p>Some changes to make this format viable:</p>
+                <ul>
+                    <li>
+                        Special characters/numbers in Pokémon names have been
+                        omitted.
+                    </li>
+                    <li>
+                        The dataset is limited to Pokémon with names upto{' '}
+                        <u>10 letters</u> in length.
+                    </li>
+                    <li>
+                        Mew and Muk have been discarded for being the only two
+                        3-letter Pokémon.
+                    </li>
+                </ul>
+                {/* <p>
                     Special characters have been omitted to be more viable in
                     this format.
+
                 </p>
                 <p>
                     <strong>Examples</strong>
-                </p>
-                <ul>
+                </p> */}
+                {/* <ul>
                     {['MRMIME', 'HOOH', 'TYPENULL'].map((p, pi) => {
                         return (
                             <li key={pi}>
@@ -147,7 +163,7 @@ const Info = forwardRef(function Info(_: unknown, ref: Ref<HTMLDivElement>) {
                             </li>
                         );
                     })}
-                </ul>
+                </ul> */}
             </div>
         </dialog>
     );
