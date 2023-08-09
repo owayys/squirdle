@@ -112,7 +112,7 @@
     color: var(--background);
 }
 .placeholder {
-    content: url('/src/assets/hidden_poke.webp');
+    content: url('/hidden_poke.webp');
 }
 .type-normal {
     background-color: #aa9;

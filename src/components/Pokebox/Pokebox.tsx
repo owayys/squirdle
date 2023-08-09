@@ -33,7 +33,7 @@ function Pokebox(currPokemon: {
         <div id="pokebox">
             <img
                 className="pokeimg img-hidden placeholder"
-                src={`/assets/images/${currPokemon.id}.webp`}
+                src={`/images/${currPokemon.id}.webp`}
                 loading="eager"
             />
             <table className="pokeinfo">
