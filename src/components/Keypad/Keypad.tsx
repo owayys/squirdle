@@ -9,7 +9,10 @@ function Keypad({ handleKey, currBoard, rightGuessString }: any) {
         for (let j = 0; j < rightGuess.length; j++) {
             if (currBoard[i][j] === rightGuess[j]) {
                 keyColors[rightGuess[j]] = 'green';
-            } else if (rightGuessString.includes(currBoard[i][j])) {
+            } else if (
+                rightGuessString.includes(currBoard[i][j]) &&
+                currBoard[i][j].length > 0
+            ) {
                 if (keyColors[rightGuess[j]] !== 'green') {
                     keyColors[rightGuess[j]] = '#FFC800';
                 }
