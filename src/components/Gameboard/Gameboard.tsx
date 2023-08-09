@@ -368,6 +368,10 @@ const Gameboard = ({
             return;
         }
 
+        if (e.repeat) {
+            return;
+        }
+
         handleKey(e.key);
     });
 
@@ -403,7 +407,11 @@ const Gameboard = ({
                     </div>
                 ))}
             </div>
-            <Keypad handleKey={handleKey} />
+            <Keypad
+                handleKey={handleKey}
+                currBoard={currBoard}
+                rightGuessString={rightGuessString}
+            />
         </>
     );
 };
