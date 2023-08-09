@@ -132,38 +132,6 @@ const Info = forwardRef(function Info(_: unknown, ref: Ref<HTMLDivElement>) {
                         3-letter Pokémon.
                     </li>
                 </ul>
-                {/* <p>
-                    Special characters have been omitted to be more viable in
-                    this format.
-
-                </p>
-                <p>
-                    <strong>Examples</strong>
-                </p> */}
-                {/* <ul>
-                    {['MRMIME', 'HOOH', 'TYPENULL'].map((p, pi) => {
-                        return (
-                            <li key={pi}>
-                                <div className="letter-row info-row">
-                                    {Array.from(p).map((l, li) => {
-                                        return (
-                                            <div
-                                                key={li}
-                                                className="letter-box box-revealed"
-                                                style={{
-                                                    borderColor: 'green',
-                                                    backgroundColor: 'green',
-                                                }}
-                                            >
-                                                {l.toUpperCase()}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </li>
-                        );
-                    })}
-                </ul> */}
             </div>
         </dialog>
     );
