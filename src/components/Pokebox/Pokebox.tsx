@@ -9,7 +9,7 @@ function Pokebox(currPokemon: {
     weight: number;
     types: string[];
 }) {
-    const url = 'src/assets/images/' + currPokemon.id + '.webp';
+    const url = '/src/assets/images/' + currPokemon.id + '.webp';
 
     const typeAbbr: { [key: string]: string } = {
         normal: 'NRM',
