@@ -101,11 +101,13 @@ const Stats = forwardRef(function stats(_: unknown, ref: Ref<HTMLDivElement>) {
                     </div>
                     <div className="stat-box">
                         <div className="stat-value">{stats.currentStreak}</div>
-                        <div className="stat-name">CURR STREAK</div>
+                        <div className="stat-name">CURR</div>
+                        <div className="stat-name">STREAK</div>
                     </div>
                     <div className="stat-box">
                         <div className="stat-value">{stats.maxStreak}</div>
-                        <div className="stat-name">MAX STREAK</div>
+                        <div className="stat-name">MAX</div>
+                        <div className="stat-name">STREAK</div>
                     </div>
                 </div>
                 <div className="guess-cont">
