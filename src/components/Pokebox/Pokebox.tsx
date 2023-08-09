@@ -9,10 +9,7 @@ function Pokebox(currPokemon: {
     weight: number;
     types: string[];
 }) {
-    const url =
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
-        currPokemon.id +
-        '.png';
+    const url = 'src/assets/images/' + currPokemon.id + '.webp';
 
     const typeAbbr: { [key: string]: string } = {
         normal: 'NRM',
