@@ -9,15 +9,15 @@
     height: auto;
     width: 50%;
     padding: 1rem;
-}
-.img-hidden {
-    -webkit-filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
-    filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
     user-drag: none;
+}
+.img-hidden {
+    -webkit-filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
+    filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="202f36" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.15294 0 0 0 0 0.22745 0 0 0 0 0.25882 0 0 0 1 0"/></filter></defs></svg>#202f36');
     pointer-events: none;
 }
 .pokeinfo {
@@ -92,7 +92,7 @@
     color: var(--background);
 }
 .placeholder {
-    content: url("/src/assets/hidden_poke.png");
+    content: url('/src/assets/hidden_poke.png');
 }
 .type-normal {
     background-color: #aa9;

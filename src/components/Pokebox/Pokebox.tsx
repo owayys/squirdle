@@ -14,6 +14,26 @@ function Pokebox(currPokemon: {
         currPokemon.id +
         '.png';
 
+    const typeAbbr: { [key: string]: string } = {
+        normal: 'NRM',
+        flying: 'FLY',
+        fire: 'FIR',
+        psychic: 'PSY',
+        water: 'WTR',
+        bug: 'BUG',
+        grass: 'GRS',
+        rock: 'RCK',
+        electric: 'ELE',
+        ghost: 'GHO',
+        ice: 'ICE',
+        dark: 'DRK',
+        fighting: 'FGT',
+        dragon: 'DRA',
+        poison: 'PSN',
+        steel: 'STL',
+        ground: 'GRN',
+    };
+
     return (
         <div id="pokebox">
             <img
@@ -50,7 +70,7 @@ function Pokebox(currPokemon: {
                                     key={i}
                                     className={`poke-type type-${type}`}
                                 >
-                                    {type.toUpperCase()}
+                                    {typeAbbr[type].toUpperCase()}
                                 </span>
                             ))}
                         </td>
