@@ -1,8 +1,6 @@
 import './Keypad.css';
 
 function Keypad({ handleKey, currBoard, rightGuessString }: any) {
-    console.log(currBoard, rightGuessString);
-
     const rightGuess: string[] = Array.from(rightGuessString);
 
     let keyColors: { [key: string]: string } = {};
