@@ -78,6 +78,22 @@
 
 .stats-heading {
     font-family: 'Feather Bold';
+    margin-bottom: 0;
+}
+
+.stats-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.modal-close {
+    height: 100%;
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 h1 {
@@ -116,6 +132,7 @@ hr {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 1.2rem;
 }
 
 .stat-box {

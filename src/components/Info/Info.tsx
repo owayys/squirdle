@@ -42,10 +42,30 @@ const Info = forwardRef(function Info(_: unknown, ref: Ref<HTMLDivElement>) {
         }
     }, [infoModal]);
 
+    const handleClose = () => {
+        infoModal.current.addEventListener('animationend', closeModal);
+        infoModal.current.classList.add('close');
+    };
+
     return (
         <dialog ref={infoModal} id="info-modal" open={false}>
             <div id="info-div">
-                <h1 className="info-heading">How To Play</h1>
+                <div className="info-header">
+                    <h1 className="info-heading">How To Play</h1>
+                    <svg
+                        className="modal-close"
+                        onClick={handleClose}
+                        stroke="currentColor"
+                        fill="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 512 512"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"></path>
+                    </svg>
+                </div>
                 <h2 className="info-heading">Guess the Pokémon in 5 tries.</h2>
                 <ul>
                     <li>Each guess must be a valid Pokémon.</li>
