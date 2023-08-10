@@ -117,7 +117,9 @@ const Info = forwardRef(function Info(_: unknown, ref: Ref<HTMLDivElement>) {
                     <strong>G</strong> is not in the Pokémon in any spot.
                 </div>
                 <hr color="#303F47"></hr>
-                <p>Some changes to make this format viable:</p>
+                <h2 className="info-heading">
+                    Some changes to make this format viable:
+                </h2>
                 <ul>
                     <li>
                         Special characters/numbers in Pokémon names have been
