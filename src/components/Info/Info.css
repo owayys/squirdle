@@ -93,6 +93,7 @@
     color: var(--primary);
     font-size: 1.4rem;
     font-weight: bold;
+    cursor: pointer;
 }
 
 h1 {

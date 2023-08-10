@@ -94,6 +94,7 @@
     color: var(--primary);
     font-size: 2rem;
     font-weight: bold;
+    cursor: pointer;
 }
 
 h1 {
