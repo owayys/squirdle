@@ -71,9 +71,7 @@
 }
 
 #stats-div {
-    padding-left: 3.5vw;
-    padding-right: 3.5vw;
-    margin-top: 1rem;
+    padding: 3.5vw;
 }
 
 .stats-heading {
@@ -117,7 +115,7 @@ h2 {
 }
 
 p {
-    font-size: 2.7vw;
+    font-size: 4.7vw;
     margin-bottom: 0.3rem;
 }
 
@@ -153,6 +151,8 @@ hr {
 }
 
 .guess-cont {
+    width: 75%;
+    margin: auto;
     padding-bottom: 0.7rem;
 }
 
@@ -212,6 +212,9 @@ hr {
     .guess-bar-inner {
         font-size: 1vw;
     }
+    p {
+        font-size: 1.7vw;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -226,5 +229,8 @@ hr {
     }
     .guess-bar-inner {
         font-size: 2.5vw;
+    }
+    p {
+        font-size: 2.2vw;
     }
 }
