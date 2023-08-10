@@ -35,6 +35,10 @@
     border-radius: 0.3rem;
 }
 
+.keyboard-button:active {
+    filter: brightness(0.9);
+}
+
 @media screen and (min-width: 720px) {
     .keyboard-button {
         font-size: 1.3vw;
