@@ -96,7 +96,7 @@ const Gameboard = ({
         }, []);
     }
 
-    document.addEventListener('keyup', (e) => {
+    document.addEventListener('keydown', (e) => {
         e.stopImmediatePropagation();
         if (
             !(
