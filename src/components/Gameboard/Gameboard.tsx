@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import Keypad from 'components/Keypad/Keypad';
 import './Gameboard.css';
 
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
+
 interface gameData {
     game: {
         boardState: [string, string, string, string, string];
@@ -93,12 +96,26 @@ const Gameboard = ({
         }, []);
     }
 
+    document.addEventListener('keyup', (e) => {
+        e.stopImmediatePropagation();
+        if (
+            !(
+                e.key.match(/^[a-z]$/) ||
+                e.key === 'Enter' ||
+                e.key === 'Backspace'
+            )
+        ) {
+            return;
+        } else if (e.repeat) {
+            return;
+        } else {
+            console.log('key!');
+            handleKey(e.key);
+        }
+    });
+
     const NUMBER_OF_GUESSES = 5;
-    let guessesRemaining = data
-        ? data.game.status === 'WIN'
-            ? 0
-            : NUMBER_OF_GUESSES - data.game.currentRowIndex
-        : NUMBER_OF_GUESSES;
+    let guessesRemaining = NUMBER_OF_GUESSES;
     let currentGuess: string[] = [];
     let nextLetter = 0;
     let rightGuessString = currPokemon;
@@ -115,6 +132,10 @@ const Gameboard = ({
                 ? word.split('')
                 : Array(maxLetters).join('.').split('.'),
         );
+        guessesRemaining =
+            data.game.status === 'WIN'
+                ? 0
+                : NUMBER_OF_GUESSES - data.game.currentRowIndex;
     }, [data]);
 
     const insertLetter = (pressedKey: string) => {
@@ -217,9 +238,9 @@ const Gameboard = ({
 
         if (guessString.length != maxLetters) {
             // alert("Not enough letters!")
+            toastNotif('Not enough letters', 1500);
             row.classList.add('shake');
 
-            // Buttons stops to shake after 2 seconds
             setTimeout(() => {
                 row.classList.remove('shake');
             }, 300);
@@ -227,9 +248,9 @@ const Gameboard = ({
         }
 
         if (!pokeList.includes(guessString)) {
+            toastNotif('Not in Pokémon list', 1500);
             row.classList.add('shake');
 
-            // Buttons stops to shake after 2 seconds
             setTimeout(() => {
                 row.classList.remove('shake');
             }, 300);
@@ -264,7 +285,7 @@ const Gameboard = ({
         }
 
         if (guessString === rightGuessString) {
-            // alert("You guessed right! Game over!")
+            toastNotif('Well done!', 1500);
             revealHints(5);
 
             data.game.status = 'WIN';
@@ -317,6 +338,8 @@ const Gameboard = ({
             }
 
             if (guessesRemaining === 0) {
+                toastNotif(rightGuessString.toUpperCase(), -1);
+
                 revealHints(5);
 
                 data.game.status = 'LOSE';
@@ -357,23 +380,16 @@ const Gameboard = ({
         }
     }
 
-    document.addEventListener('keyup', (e) => {
-        if (
-            !(
-                e.key.match(/^[a-z]$/) ||
-                e.key === 'Enter' ||
-                e.key === 'Backspace'
-            )
-        ) {
-            return;
-        }
-
-        if (e.repeat) {
-            return;
-        }
-
-        handleKey(e.key);
-    });
+    function toastNotif(msg: string, dur: number) {
+        Toastify({
+            text: msg,
+            className: 'toast',
+            duration: dur,
+            newWindow: true,
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+        }).showToast();
+    }
 
     return (
         <>
