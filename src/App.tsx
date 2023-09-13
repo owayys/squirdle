@@ -12,7 +12,7 @@ import poke_data from 'data/poke_data.json';
 function App() {
     const statsButton: any = useRef();
     const infoButton: any = useRef();
-    let origin_time = new Date('8/1/2023');
+    let origin_time = new Date('9/1/2023');
     let current_time = new Date();
     let day_idx = Math.floor(
         (current_time.getTime() - origin_time.getTime()) / (1000 * 3600 * 24),

@@ -292,7 +292,9 @@ const Gameboard = ({
             data.game.boardState[data.game.currentRowIndex] = guessString;
             data.game.currentRowIndex = NUMBER_OF_GUESSES - guessesRemaining;
 
-            if (
+            if (data.stats.currentStreak === 0) {
+                data.stats.currentStreak += 1;
+            } else if (
                 (new Date().getTime() - data.game.timestamps.lastPlayed) /
                     (1000 * 3600 * 24) <
                     1 ||
